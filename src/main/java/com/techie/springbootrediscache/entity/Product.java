@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String name;
-    BigDecimal price;
+    private Long id;
+    private String name;
+    private BigDecimal price;
 
     public Long getId() {
         return id;
