@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
@@ -20,7 +21,10 @@ public class RedisCacheConfig {
                 .entryTtl(Duration.ofMinutes(10)) // Set default expiration time for cache entries
                 .disableCachingNullValues()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
-                        .fromSerializer(new Jackson2JsonRedisSerializer<>(ProductDto.class)));
+                        .fromSerializer(
+//                          new Jackson2JsonRedisSerializer<>(ProductDto.class)
+                            new GenericJackson2JsonRedisSerializer()    // allows for different classes to be serialized
+                        ));
 
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(redisCacheConfiguration)
