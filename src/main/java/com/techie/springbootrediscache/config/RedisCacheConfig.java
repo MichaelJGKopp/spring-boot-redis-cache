@@ -1,4 +1,4 @@
-package config;
+package com.techie.springbootrediscache.config;
 
 import com.techie.springbootrediscache.dto.ProductDto;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +12,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import java.time.Duration;
 
 @Configuration
-public class RedisConfig {
+public class RedisCacheConfig {
 
     @Bean
     public RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
